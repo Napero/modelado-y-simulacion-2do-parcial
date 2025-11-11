@@ -37,7 +37,33 @@ export class Navigation {
       >
         ${index + 1}. ${this.getCategoryShortName(category)}
       </button>
-    `).join('');
+    `).join('') + `
+      <div class="materials-dropdown">
+        <button class="tab materials-btn">
+          📚 Material de Clase
+        </button>
+        <div class="materials-menu">
+          <a href="materiales/9. Sistemas Autonomos desacoplados 1d.pdf" target="_blank">
+            Sistemas Autónomos 1D
+          </a>
+          <a href="materiales/10.Bifurcaciones.pdf" target="_blank">
+            Bifurcaciones
+          </a>
+          <a href="materiales/13.sistemas_dinamicos_no_lineales.pdf" target="_blank">
+            Sistemas No Lineales
+          </a>
+          <a href="materiales/13.sistemas_dinamicos_no_lineales 1.pdf" target="_blank">
+            Sistemas No Lineales (parte 2)
+          </a>
+          <a href="materiales/14.sistemas_dinamicos_no_lineales_aplicaciones.pdf" target="_blank">
+            Aplicaciones No Lineales
+          </a>
+          <a href="materiales/15.Parametrizacion_sistemas_dinamicos.pdf" target="_blank">
+            Parametrización
+          </a>
+        </div>
+      </div>
+    `;
   }
 
   private getCategoryShortName(category: string): string {
