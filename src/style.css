@@ -1,0 +1,353 @@
+﻿:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --bg-color: #ecf0f1;
+  --card-bg: #ffffff;
+  --text-color: #2c3e50;
+  --border-color: #bdc3c7;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.navigation {
+  background-color: var(--card-bg);
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 1rem;
+  background-color: var(--primary-color);
+}
+
+.tab {
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.tab.active {
+  color: white;
+  border-bottom-color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.submenu {
+  padding: 1rem 2rem;
+  background-color: var(--card-bg);
+}
+
+.submenu-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.exercise-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exercise-list li {
+  display: inline-block;
+}
+
+.exercise-list a {
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+}
+
+.exercise-list a:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.home {
+  text-align: center;
+}
+
+.home h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.home > p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.categories-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.category-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.category-card h3 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.category-card ul {
+  list-style: none;
+}
+
+.category-card li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--bg-color);
+}
+
+.category-card li:last-child {
+  border-bottom: none;
+}
+
+.exercise-container {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.exercise-header h1 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.description {
+  color: #7f8c8d;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border-left: 4px solid var(--secondary-color);
+  border-radius: 4px;
+}
+
+.input-section {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.input-section h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+#exercise-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.input-group input {
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.solve-button {
+  grid-column: 1 / -1;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.solve-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+.steps-container {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.steps-container h2 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.step {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--secondary-color);
+}
+
+.step h3 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.step h4 {
+  color: var(--text-color);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.formula, .substitution, .result {
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  white-space: pre-wrap;
+  margin: 0.5rem 0;
+}
+
+.formula {
+  background-color: #e8f4f8;
+  border-left: 3px solid var(--secondary-color);
+}
+
+.substitution {
+  background-color: #fff3cd;
+  border-left: 3px solid #ffc107;
+}
+
+.result {
+  background-color: #d4edda;
+  border-left: 3px solid #28a745;
+  font-weight: 600;
+}
+
+.explanation-section {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-color);
+  border-radius: 4px;
+  font-style: italic;
+  color: #5a6c7d;
+}
+
+.chart-container {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.chart-container h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+#chart-canvas {
+  max-height: 400px;
+  width: 100%;
+}
