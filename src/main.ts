@@ -12,6 +12,7 @@ declare global {
 }
 
 // Load auto-render dynamically
+// @ts-ignore
 import('katex/dist/contrib/auto-render.mjs').then((module: any) => {
   window.renderMathInElement = module.default;
 }).catch(() => {

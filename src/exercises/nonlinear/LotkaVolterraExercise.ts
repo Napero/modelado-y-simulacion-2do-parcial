@@ -64,7 +64,6 @@ P₂: y = α/β = ${alpha}/${beta}, x = γ/δ = ${gamma}/${delta}`,
     const J12 = -beta_num * xStar; // ∂f/∂y
     const J21 = delta_num * yStar; // ∂g/∂x
     const J22 = 0; // ∂g/∂y evaluado en (x*, y*) = δx* - γ = 0
-    const trace_P2 = J11 + J22;
     const det_P2 = J11 * J22 - J12 * J21;
     
     steps.push({

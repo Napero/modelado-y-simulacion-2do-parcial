@@ -1,6 +1,6 @@
 import type { SimulationResult, ExerciseParams } from '../models/types';
 import { Chart, type ChartConfiguration } from 'chart.js/auto';
-import { getPresets, type Preset } from '../utils/presets';
+import { getPresets } from '../utils/presets';
 
 export abstract class ExerciseBase {
   protected container: HTMLElement;
