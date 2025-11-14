@@ -17,12 +17,23 @@ export interface Step {
 
 export interface SimulationResult {
   steps: Step[];
-  data: {
-    x: number[];
-    y: number[];
-    label: string;
-  }[];
+  data: ChartData[];
   additionalInfo?: Record<string, any>;
+}
+
+export interface ChartData {
+  title?: string;
+  type?: 'line' | 'scatter' | 'bar';
+  x?: number[];
+  y?: number[];
+  label?: string;
+  color?: string;
+  backgroundColor?: string;
+  showPoints?: boolean;
+  pointColor?: string;
+  datasets?: any[];
+  xLabel?: string;
+  yLabel?: string;
 }
 
 export interface ExerciseParams {

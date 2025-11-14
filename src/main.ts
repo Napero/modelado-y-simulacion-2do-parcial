@@ -1,6 +1,22 @@
 import './style.css';
+import 'katex/dist/katex.min.css';
 import { Navigation } from './components/Navigation';
+import { Cheatsheet } from './components/Cheatsheet';
 import { router } from './services/router';
+
+// Import KaTeX auto-render
+declare global {
+  interface Window {
+    renderMathInElement: any;
+  }
+}
+
+// Load auto-render dynamically
+import('katex/dist/contrib/auto-render.mjs').then((module: any) => {
+  window.renderMathInElement = module.default;
+}).catch(() => {
+  console.warn('KaTeX auto-render not loaded');
+});
 
 // Import all exercises
 import { VerhulstExercise } from './exercises/1d-linear/VerhulstExercise';
@@ -24,11 +40,15 @@ app.innerHTML = `
     </header>
     <div id="navigation"></div>
     <main id="content" class="content"></main>
+    <div id="cheatsheet-container"></div>
   </div>
 `;
 
 // Initialize navigation
 new Navigation('navigation');
+
+// Initialize cheatsheet
+new Cheatsheet('cheatsheet-container');
 
 // Exercise instances map
 let currentExercise: any = null;
@@ -53,6 +73,7 @@ for (const [path, exerciseFactory] of Object.entries(exerciseMap)) {
       currentExercise.destroy();
     }
     currentExercise = exerciseFactory();
+    currentExercise.setExerciseId(path); // Pasar el ID del ejercicio
     currentExercise.render();
   });
 }

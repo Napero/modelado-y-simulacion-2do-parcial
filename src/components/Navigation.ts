@@ -63,6 +63,9 @@ export class Navigation {
           </a>
         </div>
       </div>
+      <button class="tab cheatsheet-btn" id="cheatsheet-toggle-nav">
+        📐 Formulas
+      </button>
     `;
   }
 
@@ -105,6 +108,14 @@ export class Navigation {
         }
       });
     });
+
+    // Event listener para el botón de cheatsheet
+    const cheatsheetBtn = document.getElementById('cheatsheet-toggle-nav');
+    if (cheatsheetBtn) {
+      cheatsheetBtn.addEventListener('click', () => {
+        window.open('./formulario.html', '_blank');
+      });
+    }
 
     // Event listeners para los enlaces del submenú
     this.container.querySelectorAll('.exercise-list a').forEach(link => {

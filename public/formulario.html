@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulas de Referencia - Modelado y Simulación</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: white;
+      padding: 0.5cm;
+      line-height: 1.3;
+      font-size: 10pt;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: black;
+      margin-bottom: 0.5rem;
+      font-size: 16pt;
+      border-bottom: 2px solid black;
+      padding-bottom: 0.3rem;
+    }
+
+    h2 {
+      color: black;
+      margin-top: 0.8rem;
+      margin-bottom: 0.3rem;
+      font-size: 13pt;
+      border-bottom: 1px solid #666;
+      padding-bottom: 0.2rem;
+    }
+
+    h3 {
+      color: black;
+      margin-top: 0.5rem;
+      margin-bottom: 0.3rem;
+      font-size: 11pt;
+      font-weight: bold;
+    }
+
+    .formula-section {
+      margin-bottom: 0.8rem;
+      page-break-inside: avoid;
+    }
+
+    .formula-item {
+      margin: 0.3rem 0;
+      padding: 0.2rem 0;
+      border-left: 2px solid #999;
+      padding-left: 0.5rem;
+    }
+
+    .formula-label {
+      font-weight: 600;
+      color: black;
+      display: inline;
+      margin-right: 0.3rem;
+    }
+
+    .formula-tex {
+      margin: 0.2rem 0;
+      display: inline-block;
+    }
+
+    .info-box {
+      background: #f5f5f5;
+      border-left: 2px solid #666;
+      padding: 0.3rem 0.5rem;
+      margin: 0.3rem 0;
+      font-size: 9pt;
+      page-break-inside: avoid;
+    }
+
+    .warning-box {
+      background: #f5f5f5;
+      border: 1px solid #666;
+      padding: 0.3rem 0.5rem;
+      margin: 0.5rem 0;
+      font-size: 9pt;
+      page-break-inside: avoid;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.3rem;
+      margin: 0.3rem 0;
+    }
+
+    @media print {
+      body {
+        padding: 0.3cm;
+        font-size: 9pt;
+      }
+      
+      h1 { font-size: 14pt; }
+      h2 { font-size: 12pt; }
+      h3 { font-size: 10pt; }
+      
+      .formula-section {
+        page-break-inside: avoid;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Formulas de Referencia</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+      Modelado y Simulación - 2do Parcial
+    </p>
+
+    <h2>📐 Matemática General</h2>
+    
+    <div class="formula-section">
+      <h3>Derivadas Básicas</h3>
+      <div class="grid-2">
+        <div class="formula-item">
+          <span class="formula-label">Potencia:</span>
+          <div class="formula-tex">$$\frac{d}{dx}x^n = nx^{n-1}$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Exponencial:</span>
+          <div class="formula-tex">$$\frac{d}{dx}e^x = e^x$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Logaritmo:</span>
+          <div class="formula-tex">$$\frac{d}{dx}\ln(x) = \frac{1}{x}$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Seno:</span>
+          <div class="formula-tex">$$\frac{d}{dx}\sin(x) = \cos(x)$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Coseno:</span>
+          <div class="formula-tex">$$\frac{d}{dx}\cos(x) = -\sin(x)$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Tangente:</span>
+          <div class="formula-tex">$$\frac{d}{dx}\tan(x) = \sec^2(x)$$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Integrales Básicas</h3>
+      <div class="grid-2">
+        <div class="formula-item">
+          <span class="formula-label">Potencia:</span>
+          <div class="formula-tex">$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Exponencial:</span>
+          <div class="formula-tex">$$\int e^x dx = e^x + C$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Logaritmo:</span>
+          <div class="formula-tex">$$\int \frac{1}{x} dx = \ln|x| + C$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Seno:</span>
+          <div class="formula-tex">$$\int \sin(x) dx = -\cos(x) + C$$</div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-label">Coseno:</span>
+          <div class="formula-tex">$$\int \cos(x) dx = \sin(x) + C$$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Identidades Trigonométricas</h3>
+      <div class="formula-item">
+        <span class="formula-label">Pitagórica:</span>
+        <div class="formula-tex">$$\sin^2(x) + \cos^2(x) = 1$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Ángulo doble (seno):</span>
+        <div class="formula-tex">$$\sin(2x) = 2\sin(x)\cos(x)$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Ángulo doble (coseno):</span>
+        <div class="formula-tex">$$\cos(2x) = \cos^2(x) - \sin^2(x) = 2\cos^2(x) - 1 = 1 - 2\sin^2(x)$$</div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Álgebra Lineal</h3>
+      <div class="formula-item">
+        <span class="formula-label">Matriz 2×2 - Determinante:</span>
+        <div class="formula-tex">$$\det\begin{pmatrix}a & b\\c & d\end{pmatrix} = ad - bc$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Matriz 2×2 - Traza:</span>
+        <div class="formula-tex">$$\text{tr}\begin{pmatrix}a & b\\c & d\end{pmatrix} = a + d$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Autovalores:</span>
+        <div class="formula-tex">$$\lambda_{1,2} = \frac{\text{tr}(A) \pm \sqrt{\text{tr}(A)^2 - 4\det(A)}}{2}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Discriminante:</span>
+        <div class="formula-tex">$$\Delta = \tau^2 - 4\Delta = (\text{tr}(A))^2 - 4\det(A)$$</div>
+      </div>
+    </div>
+
+    <h2>🎯 Sistemas 1D</h2>
+
+    <div class="formula-section">
+      <h3>Modelo Logístico de Verhulst</h3>
+      <div class="formula-item">
+        <span class="formula-label">Ecuación diferencial:</span>
+        <div class="formula-tex">$$\frac{dx}{dt} = rx\left(1 - \frac{x}{K}\right)$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Solución analítica:</span>
+        <div class="formula-tex">$$x(t) = \frac{K}{1 + \left(\frac{K-x_0}{x_0}\right)e^{-rt}}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Equilibrios:</span>
+        <div class="formula-tex">$$x^* = 0 \text{ (inestable)}, \quad x^* = K \text{ (estable)}$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Interpretación:</strong> r = tasa de crecimiento, K = capacidad de carga
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Ley de Enfriamiento de Newton</h3>
+      <div class="formula-item">
+        <span class="formula-label">Ecuación diferencial:</span>
+        <div class="formula-tex">$$\frac{dT}{dt} = -k(T - T_a)$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Solución analítica:</span>
+        <div class="formula-tex">$$T(t) = T_a + (T_0 - T_a)e^{-kt}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Equilibrio:</span>
+        <div class="formula-tex">$$T^* = T_a \text{ (estable)}$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Interpretación:</strong> k = coeficiente de enfriamiento, T_a = temperatura ambiente
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Análisis de Estabilidad 1D</h3>
+      <div class="formula-item">
+        <span class="formula-label">Criterio de estabilidad lineal:</span>
+        <div class="formula-tex">$$f'(x^*) < 0 \implies \text{estable (atractor)}$$</div>
+        <div class="formula-tex">$$f'(x^*) > 0 \implies \text{inestable (repulsor)}$$</div>
+        <div class="formula-tex">$$f'(x^*) = 0 \implies \text{análisis de orden superior necesario}$$</div>
+      </div>
+    </div>
+
+    <h2>🔀 Bifurcaciones</h2>
+
+    <div class="formula-section">
+      <h3>Bifurcación Silla-Nodo (Saddle-Node)</h3>
+      <div class="formula-item">
+        <span class="formula-label">Forma normal:</span>
+        <div class="formula-tex">$$\frac{dx}{dt} = r + x^2$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Equilibrios:</span>
+        <div class="formula-tex">$$r < 0: \quad x^* = \pm\sqrt{-r}$$</div>
+        <div class="formula-tex">$$r = 0: \quad x^* = 0 \text{ (punto de bifurcación)}$$</div>
+        <div class="formula-tex">$$r > 0: \quad \text{sin equilibrios}$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Características:</strong> Dos equilibrios colisionan y desaparecen
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Bifurcación Transcrítica</h3>
+      <div class="formula-item">
+        <span class="formula-label">Forma normal:</span>
+        <div class="formula-tex">$$\frac{dx}{dt} = rx - x^2$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Equilibrios:</span>
+        <div class="formula-tex">$$x_1^* = 0, \quad x_2^* = r$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Características:</strong> Los equilibrios intercambian estabilidad en r=0
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Bifurcación Pitchfork (Supercrítica)</h3>
+      <div class="formula-item">
+        <span class="formula-label">Forma normal:</span>
+        <div class="formula-tex">$$\frac{dx}{dt} = rx - x^3$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Equilibrios:</span>
+        <div class="formula-tex">$$r < 0: \quad x^* = 0 \text{ (estable)}$$</div>
+        <div class="formula-tex">$$r > 0: \quad x^* = 0 \text{ (inestable)}, \quad x^* = \pm\sqrt{r} \text{ (estables)}$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Características:</strong> Bifurcación con simetría, aparecen dos equilibrios estables
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Bifurcación Pitchfork (Subcrítica)</h3>
+      <div class="formula-item">
+        <span class="formula-label">Forma normal:</span>
+        <div class="formula-tex">$$\frac{dx}{dt} = rx + x^3$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Características:</strong> Bifurcación con simetría, aparecen dos equilibrios inestables
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Bifurcación de Hopf</h3>
+      <div class="formula-item">
+        <span class="formula-label">Condiciones:</span>
+        <div class="formula-tex">$$\text{tr}(J) = 0, \quad \det(J) > 0$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Autovalores:</span>
+        <div class="formula-tex">$$\lambda = \alpha(\mu) \pm i\omega(\mu)$$</div>
+        <div class="formula-tex">$$\alpha(\mu_c) = 0, \quad \omega(\mu_c) \neq 0$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Características:</strong> Nace/muere un ciclo límite cuando un foco cambia estabilidad
+      </div>
+    </div>
+
+    <h2>🔄 Sistemas Lineales 2D</h2>
+
+    <div class="formula-section">
+      <h3>Sistema Lineal General</h3>
+      <div class="formula-item">
+        <span class="formula-label">Forma matricial:</span>
+        <div class="formula-tex">$$\begin{pmatrix}\dot{x}\\\dot{y}\end{pmatrix} = \begin{pmatrix}a & b\\c & d\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Solución general:</span>
+        <div class="formula-tex">$$\vec{x}(t) = c_1 e^{\lambda_1 t}\vec{v}_1 + c_2 e^{\lambda_2 t}\vec{v}_2$$</div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Clasificación de Equilibrios</h3>
+      <div class="formula-item">
+        <span class="formula-label">Nodo estable:</span>
+        <div class="formula-tex">$$\lambda_1, \lambda_2 < 0 \text{ (reales)}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Nodo inestable:</span>
+        <div class="formula-tex">$$\lambda_1, \lambda_2 > 0 \text{ (reales)}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Punto silla:</span>
+        <div class="formula-tex">$$\lambda_1 < 0 < \lambda_2$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Espiral estable:</span>
+        <div class="formula-tex">$$\lambda = \alpha \pm i\beta, \quad \alpha < 0$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Espiral inestable:</span>
+        <div class="formula-tex">$$\lambda = \alpha \pm i\beta, \quad \alpha > 0$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Centro:</span>
+        <div class="formula-tex">$$\lambda = \pm i\beta \quad (\alpha = 0)$$</div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Criterios con Traza y Determinante</h3>
+      <div class="formula-item">
+        <span class="formula-label">Condiciones:</span>
+        <div class="formula-tex">$$\tau = \text{tr}(A), \quad \Delta = \det(A)$$</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-tex">$$\tau^2 - 4\Delta > 0: \text{ Nodos}$$</div>
+        <div class="formula-tex">$$\tau^2 - 4\Delta < 0: \text{ Espirales o Centros}$$</div>
+        <div class="formula-tex">$$\Delta < 0: \text{ Silla}$$</div>
+        <div class="formula-tex">$$\Delta > 0, \tau < 0: \text{ Estable}$$</div>
+        <div class="formula-tex">$$\Delta > 0, \tau > 0: \text{ Inestable}$$</div>
+        <div class="formula-tex">$$\Delta > 0, \tau = 0: \text{ Centro}$$</div>
+      </div>
+    </div>
+
+    <h2>🌀 Sistemas No Lineales</h2>
+
+    <div class="formula-section">
+      <h3>Linealización</h3>
+      <div class="formula-item">
+        <span class="formula-label">Jacobiano:</span>
+        <div class="formula-tex">$$J = \begin{pmatrix}\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y}\\\frac{\partial g}{\partial x} & \frac{\partial g}{\partial y}\end{pmatrix}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Sistema linealizado en $(x^*, y^*)$:</span>
+        <div class="formula-tex">$$\begin{pmatrix}\dot{u}\\\dot{v}\end{pmatrix} = J(x^*, y^*)\begin{pmatrix}u\\v\end{pmatrix}$$</div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Teorema de Hartman-Grobman</h3>
+      <div class="info-box">
+        <p><strong>Enunciado:</strong> Si un equilibrio es hiperbólico (ningún autovalor tiene parte real cero), entonces el comportamiento cerca del equilibrio es topológicamente equivalente al del sistema linealizado.</p>
+        <p><strong>Casos no hiperbólicos:</strong> Requieren análisis de orden superior</p>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Modelo Lotka-Volterra (Predador-Presa)</h3>
+      <div class="formula-item">
+        <span class="formula-label">Sistema:</span>
+        <div class="formula-tex">$$\begin{cases}\dot{x} = ax - bxy\\\dot{y} = -cy + dxy\end{cases}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Equilibrios:</span>
+        <div class="formula-tex">$$(0, 0), \quad \left(\frac{c}{d}, \frac{a}{b}\right)$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Interpretación:</strong> x = presas, y = predadores, ciclos cerrados en el plano fase
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Funciones de Lyapunov</h3>
+      <div class="formula-item">
+        <span class="formula-label">Definición:</span>
+        <div class="formula-tex">$$V: \mathbb{R}^n \to \mathbb{R}, \quad V(x^*) = 0, \quad V(x) > 0 \text{ para } x \neq x^*$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Criterio de estabilidad:</span>
+        <div class="formula-tex">$$\dot{V}(x) < 0 \text{ para } x \neq x^* \implies x^* \text{ es asintóticamente estable}$$</div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Conservación de Energía</h3>
+      <div class="formula-item">
+        <span class="formula-label">Hamiltoniano:</span>
+        <div class="formula-tex">$$H(x, \dot{x}) = T + V = \frac{1}{2}m\dot{x}^2 + V(x)$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Conservación:</span>
+        <div class="formula-tex">$$\frac{dH}{dt} = 0 \implies H(t) = H(0) = \text{constante}$$</div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Teorema de Poincaré-Bendixson</h3>
+      <div class="info-box">
+        <p><strong>Enunciado:</strong> En sistemas 2D, si una trayectoria está confinada en una región compacta que no contiene equilibrios, entonces debe converger a un ciclo límite.</p>
+        <p><strong>Aplicación:</strong> Garantiza existencia de ciclos límites en sistemas planos</p>
+      </div>
+    </div>
+
+    <h2>🎨 Parametrización</h2>
+
+    <div class="formula-section">
+      <h3>Coordenadas Polares</h3>
+      <div class="formula-item">
+        <span class="formula-label">Transformación:</span>
+        <div class="formula-tex">$$x = r\cos\theta, \quad y = r\sin\theta$$</div>
+        <div class="formula-tex">$$r = \sqrt{x^2 + y^2}, \quad \theta = \arctan\left(\frac{y}{x}\right)$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Derivadas:</span>
+        <div class="formula-tex">$$\dot{r} = \frac{x\dot{x} + y\dot{y}}{r}$$</div>
+        <div class="formula-tex">$$\dot{\theta} = \frac{x\dot{y} - y\dot{x}}{r^2}$$</div>
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Órbitas y Conjuntos Límite</h3>
+      <div class="formula-item">
+        <span class="formula-label">Conjunto ω-límite:</span>
+        <div class="formula-tex">$$\omega(x_0) = \{p : \exists t_n \to \infty \text{ tal que } \phi(t_n, x_0) \to p\}$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Interpretación:</strong> Puntos a los que la trayectoria se aproxima cuando t → ∞
+      </div>
+    </div>
+
+    <div class="formula-section">
+      <h3>Modelo de Combate de Lanchester</h3>
+      <div class="formula-item">
+        <span class="formula-label">Sistema:</span>
+        <div class="formula-tex">$$\begin{cases}\dot{x} = -ay\\\dot{y} = -bx\end{cases}$$</div>
+      </div>
+      <div class="formula-item">
+        <span class="formula-label">Ley cuadrática:</span>
+        <div class="formula-tex">$$bx^2 - ay^2 = \text{constante}$$</div>
+      </div>
+      <div class="info-box">
+        <strong>Interpretación:</strong> x, y = fuerzas militares; a, b = tasas de attrición
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <strong>⚠️ Nota importante:</strong> Este Formulas es una referencia rápida. Para una comprensión completa, consultar los apuntes de teoría y resolver ejercicios prácticos.
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

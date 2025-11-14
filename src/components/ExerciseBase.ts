@@ -1,9 +1,11 @@
 import type { SimulationResult, ExerciseParams } from '../models/types';
 import { Chart, type ChartConfiguration } from 'chart.js/auto';
+import { getPresets, type Preset } from '../utils/presets';
 
 export abstract class ExerciseBase {
   protected container: HTMLElement;
-  protected chart: Chart | null = null;
+  protected charts: Chart[] = [];
+  protected exerciseId: string = '';
 
   constructor(containerId: string) {
     const element = document.getElementById(containerId);
@@ -18,7 +20,13 @@ export abstract class ExerciseBase {
   abstract getInputFields(): { name: string; label: string; defaultValue: number; step?: number }[];
   abstract solve(params: ExerciseParams): SimulationResult;
 
+  setExerciseId(id: string): void {
+    this.exerciseId = id;
+  }
+
   render(): void {
+    const presets = getPresets(this.exerciseId);
+    
     this.container.innerHTML = `
       <div class="exercise-container">
         <div class="exercise-header">
@@ -28,6 +36,19 @@ export abstract class ExerciseBase {
         
         <div class="exercise-content">
           <div class="input-section">
+            ${presets.length > 0 ? `
+              <div class="presets-section">
+                <h3>📋 Ejemplos Precargados</h3>
+                <div class="presets-buttons">
+                  ${presets.map((preset, idx) => `
+                    <button type="button" class="preset-button" data-preset-index="${idx}" title="${preset.description}">
+                      ${preset.name}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+            
             <h2>Parámetros</h2>
             <form id="exercise-form">
               ${this.renderInputFields()}
@@ -41,9 +62,8 @@ export abstract class ExerciseBase {
               <div id="steps-content"></div>
             </div>
             
-            <div class="chart-container">
+            <div class="charts-container" id="charts-container">
               <h2>Gráficos</h2>
-              <canvas id="chart-canvas"></canvas>
             </div>
           </div>
         </div>
@@ -77,6 +97,36 @@ export abstract class ExerciseBase {
         this.handleSolve(new FormData(form));
       });
     }
+
+    // Agregar listeners para los botones de presets
+    const presetButtons = this.container.querySelectorAll('.preset-button');
+    presetButtons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const presetIndex = parseInt(target.dataset.presetIndex || '0');
+        this.loadPreset(presetIndex);
+      });
+    });
+  }
+
+  private loadPreset(index: number): void {
+    const presets = getPresets(this.exerciseId);
+    if (index < 0 || index >= presets.length) return;
+
+    const preset = presets[index];
+    const form = this.container.querySelector('#exercise-form') as HTMLFormElement;
+    if (!form) return;
+
+    // Cargar los valores del preset en el formulario
+    Object.entries(preset.params).forEach(([key, value]) => {
+      const input = form.querySelector(`#${key}`) as HTMLInputElement;
+      if (input) {
+        input.value = value.toString();
+      }
+    });
+
+    // Resolver automáticamente con el preset
+    this.handleSolve(new FormData(form));
   }
 
   private handleSolve(formData: FormData): void {
@@ -152,29 +202,83 @@ export abstract class ExerciseBase {
   }
 
   private renderChart(data: SimulationResult['data']): void {
-    const canvas = this.container.querySelector('#chart-canvas') as HTMLCanvasElement;
-    if (!canvas) return;
+    const container = this.container.querySelector('#charts-container') as HTMLElement;
+    if (!container) return;
 
-    // Destruir el gráfico anterior si existe
-    if (this.chart) {
-      this.chart.destroy();
-    }
+    // Destruir gráficos anteriores
+    this.charts.forEach(chart => chart.destroy());
+    this.charts = [];
+
+    // Limpiar contenedor
+    const existingCanvases = container.querySelectorAll('.chart-wrapper');
+    existingCanvases.forEach(canvas => canvas.remove());
+
+    // Renderizar cada gráfico
+    data.forEach((chartData, index) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'chart-wrapper';
+      
+      if (chartData.title) {
+        const title = document.createElement('h3');
+        title.textContent = chartData.title;
+        title.style.textAlign = 'center';
+        title.style.marginTop = index > 0 ? '30px' : '10px';
+        wrapper.appendChild(title);
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.id = `chart-${index}`;
+      wrapper.appendChild(canvas);
+      container.appendChild(wrapper);
+
+      const chart = this.createChart(canvas, chartData);
+      if (chart) {
+        this.charts.push(chart);
+      }
+    });
+  }
+
+  protected createChart(canvas: HTMLCanvasElement, chartData: any): Chart | null {
+    // Determinar si usar scatter mode (datos como {x, y}) o line mode (datos como arrays separados)
+    const useScatterMode = chartData.datasets && chartData.datasets.length > 0 && 
+                          chartData.datasets[0].data && 
+                          chartData.datasets[0].data.length > 0 &&
+                          typeof chartData.datasets[0].data[0] === 'object' &&
+                          'x' in chartData.datasets[0].data[0];
+
+    // Asegurar que todos los datasets tengan showLine definido
+    const processedDatasets = useScatterMode ? chartData.datasets.map((ds: any) => ({
+      ...ds,
+      showLine: ds.showLine !== false, // Por defecto true a menos que sea explícitamente false
+      spanGaps: true, // Conectar líneas aunque haya gaps
+      segment: {
+        borderColor: ds.borderColor,
+      }
+    })) : chartData.datasets;
 
     const config: ChartConfiguration = {
-      type: 'line',
-      data: {
-        labels: data[0]?.x.map(x => x.toFixed(2)) || [],
-        datasets: data.map(series => ({
-          label: series.label,
-          data: series.y,
-          borderColor: this.getRandomColor(),
-          backgroundColor: 'transparent',
-          tension: 0.1
-        }))
+      type: chartData.type || 'line',
+      data: useScatterMode ? {
+        datasets: processedDatasets
+      } : {
+        labels: chartData.x?.map((x: number) => x.toFixed(2)) || [],
+        datasets: chartData.datasets || [{
+          label: chartData.label,
+          data: chartData.y,
+          borderColor: chartData.color || '#3498db',
+          backgroundColor: chartData.backgroundColor || 'transparent',
+          tension: 0.1,
+          borderWidth: 2,
+          pointRadius: chartData.showPoints ? 4 : 0,
+          pointBackgroundColor: chartData.pointColor || chartData.color || '#3498db'
+        }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: {
+          duration: 0 // Desactivar animaciones para mejor rendimiento
+        },
         plugins: {
           legend: {
             display: true,
@@ -183,41 +287,35 @@ export abstract class ExerciseBase {
         },
         scales: {
           x: {
+            type: useScatterMode ? 'linear' : 'category',
             display: true,
             title: {
               display: true,
-              text: 't'
+              text: chartData.xLabel || 't'
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
             }
           },
           y: {
             display: true,
             title: {
               display: true,
-              text: 'Valor'
+              text: chartData.yLabel || 'Valor'
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
             }
           }
         }
       }
     };
 
-    this.chart = new Chart(canvas, config);
-  }
-
-  private getRandomColor(): string {
-    const colors = [
-      '#FF6384',
-      '#36A2EB',
-      '#FFCE56',
-      '#4BC0C0',
-      '#9966FF',
-      '#FF9F40'
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+    return new Chart(canvas, config);
   }
 
   destroy(): void {
-    if (this.chart) {
-      this.chart.destroy();
-    }
+    this.charts.forEach(chart => chart.destroy());
+    this.charts = [];
   }
 }
